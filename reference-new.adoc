@@ -1,0 +1,154 @@
+---
+sidebar: sidebar 
+permalink: reference-new.html 
+keywords: 'what"s new, new, features, release notes, enhancements' 
+summary: O Cloud Volumes ONTAP 9,8 inclui vários novos recursos e aprimoramentos. 
+---
+= Novidades do Cloud Volumes ONTAP 9,8
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O Cloud Volumes ONTAP 9,8 inclui vários novos recursos e aprimoramentos.
+
+Recursos e aprimoramentos adicionais também são introduzidos nas versões mais recentes do BlueXP . Consulte https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/whats-new.html["Notas de versão do BlueXP"^] para obter detalhes.
+
+
+
+== 9,8 GA (5 Jan 2021)
+
+A versão de disponibilidade geral (GA) do Cloud Volumes ONTAP 9,8 já está disponível. A versão GA inclui correções de bugs. O BlueXP  solicitará que você atualize os sistemas 9,8 RC1 e 9,7 existentes para esta versão.
+
+
+
+== Alterações introduzidas com o conetor 3.9.2 (4 de janeiro de 2021)
+
+A versão 3.9.2 do BlueXP  Connector inclui vários aprimoramentos para o Cloud Volumes ONTAP, incluindo suporte para Outposts da AWS, discos maiores no Google Cloud e muito mais.
+
+Aceda ao https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/whats-new.html["Notas de versão do BlueXP"^] para obter mais detalhes sobre a versão 3.9.2.
+
+
+
+== E48s_v3 agora compatível com pares de HA (21 dez 2020)
+
+O tipo de VM E48s_v3 agora é compatível com pares de HA do Cloud Volumes ONTAP no Microsoft Azure.
+
+
+
+== Instâncias EC2 suportadas (11 dez 2020)
+
+A partir da versão 9,8, os tipos de instância C4, M4 e R4 EC2 não são compatíveis com novos sistemas Cloud Volumes ONTAP. A alteração de um sistema 9,8 existente para um desses tipos de instância também não é suportada.
+
+Se você tiver um sistema Cloud Volumes ONTAP 9,7 existente que esteja sendo executado em um tipo de instância C4, M4 ou R4, ainda será possível atualizar para a versão 9,8.
+
+
+
+== Atualização 9,8 RC1 (12 Nov 2020)
+
+Semelhante aos sistemas de nó único, o BlueXP  agora aloca um disco central a novas implantações de par de HA 9,8 na AWS quando você usa um tipo de instância C5, M5 ou R5. O disco central expande a capacidade de alternar entre os tipos de instâncias suportadas, melhora a capacidade do sistema de coletar arquivos principais quando ocorrem problemas e fornece a capacidade de suportar tipos de instâncias maiores no futuro.
+
+O disco central é um SSD de uso geral (GP2) com 540 GiB.
+
+
+NOTE: Com a adição desse disco central, um disco de dados a menos agora é suportado em sistemas que usam esses tipos de instância. link:reference-limits-aws.html["Saiba mais sobre os limites de armazenamento na AWS"].
+
+
+
+== 9,8 RC1 (8 nov 2020)
+
+O Cloud Volumes ONTAP 9,8 RC1 já está disponível na AWS, Azure e Google Cloud Platform. No Azure, o 9,8 RC1 está disponível apenas para atualizações no momento.
+
+Além dos recursos introduzidos com https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP 9,8"^]o , esta versão do Cloud Volumes ONTAP inclui o seguinte:
+
+* <<Pares de alta disponibilidade no Google Cloud>>
+* <<Correções para eventos de desanexar NIC do Azure e eventos de manutenção>>
+* <<Alta velocidade de gravação com pares de HA na AWS e no Azure>>
+* <<Suporte para até 24 VMs de storage na AWS>>
+* <<Disco central para sistemas de nó único na AWS>>
+
+
+
+
+=== Pares de alta disponibilidade no Google Cloud
+
+Pares de alta disponibilidade (HA) do Cloud Volumes ONTAP agora estão disponíveis no Google Cloud.
+
+Um par de HA fornece confiabilidade empresarial e operações contínuas em caso de falhas no seu ambiente de nuvem. Semelhante ao Cloud Volumes ONTAP na AWS, um par de HA no Google Cloud inclui dois nós do Cloud Volumes ONTAP cujos dados são espelhados de forma síncrona entre si e uma instância de mediador que fornece um canal de comunicação para ajudar na takeover e giveback do storage.
+
+Vista link:reference-configs-gcp.html["configurações compatíveis"] e link:reference-limits-gcp.html["limites de armazenamento"].
+
+https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-ha-google-cloud.html["Saiba mais sobre pares de HA no Google Cloud"^].
+
+
+
+=== Correções para eventos de desanexar NIC do Azure e eventos de manutenção
+
+Esta versão fornece várias melhorias para como o Cloud Volumes ONTAP lida com eventos de congelamento do Azure, eventos de desanexar NIC do Azure e outras atividades de manutenção do Azure (por exemplo, revogação de função virtual). O Cloud Volumes ONTAP é mais tolerante a falhas nesta versão e lidará com os eventos do Azure com mais simplicidade, com uma probabilidade reduzida de interrupção do serviço ou degradação do cluster.
+
+
+
+=== Alta velocidade de gravação com pares de HA na AWS e no Azure
+
+O Cloud Volumes ONTAP agora oferece suporte à alta velocidade de gravação com pares de HA na AWS e no Azure ao usar uma instância específica ou tipo de VM. A alta velocidade de gravação é uma boa opção se for necessário um desempenho de gravação rápido para sua carga de trabalho e você pode resistir ao risco de perda de dados no caso de uma interrupção não planejada do sistema.
+
+Antes de escolher uma velocidade de gravação, você deve entender as diferenças entre as configurações normal e alta e os riscos e recomendações ao usar alta velocidade de gravação.
+
+https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-write-speed.html["Saiba mais"^].
+
+
+
+=== Suporte para até 24 VMs de storage na AWS
+
+Até 24 VMs de storage agora são compatíveis com o Cloud Volumes ONTAP na AWS quando você usa um tipo de instância C5, M5 ou R5 e usa sua própria licença. Dessas 24 VMs de storage, até 12 podem ser configuradas para recuperação de desastres (DR).
+
+O limite pode ser menor, dependendo do tipo de instância EC2 que você usar.
+
+Uma licença complementar é necessária para cada VM de armazenamento _data-service_ adicional além da primeira VM de armazenamento que vem com o Cloud Volumes ONTAP por padrão. Entre em Contato com sua equipe de conta para obter uma licença complementar da SVM.
+
+As VMs de storage configuradas para recuperação de desastres (DR) não exigem uma licença complementar (elas são gratuitas), mas contam com o limite de VM de storage.
+
+link:reference-limits-aws.html["Saiba mais sobre os limites de VM de armazenamento"].
+
+https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-managing-svms-aws.html["Saiba como criar VMs de armazenamento de fornecimento de dados para o Cloud Volumes ONTAP na AWS"^].
+
+
+
+=== Disco central para sistemas de nó único na AWS
+
+O BlueXP  agora aloca um disco central para novas implantações de nó único 9,8 na AWS quando você usa um tipo de instância C5, M5 ou R5. O disco central expande a capacidade de alternar entre os tipos de instâncias suportadas, melhora a capacidade do sistema de coletar arquivos principais quando ocorrem problemas e fornece a capacidade de suportar tipos de instâncias maiores no futuro.
+
+O disco central é um SSD de uso geral (GP2) com 540 GiB.
+
+
+NOTE: Com a adição desse disco núcleo, um disco de dados a menos agora é suportado em sistemas de nó único que usam esses tipos de instância. link:reference-limits-aws.html["Saiba mais sobre os limites de armazenamento na AWS"].
+
+
+
+== Versão necessária do conetor BlueXP
+
+O conetor BlueXP  deve estar executando a versão 3.9.0 ou posterior para implantar novos sistemas Cloud Volumes ONTAP 9,8 e atualizar os sistemas existentes para a versão 9,8.
+
+
+
+== Notas de atualização
+
+* As atualizações do Cloud Volumes ONTAP devem ser concluídas a partir do BlueXP . Você não deve atualizar o Cloud Volumes ONTAP usando o Gerenciador de sistema ou a CLI. Isso pode afetar a estabilidade do sistema.
+* Você pode atualizar para o Cloud Volumes ONTAP 9,8 a partir da versão 9,7. O BlueXP  solicitará que você atualize seus sistemas Cloud Volumes ONTAP 9,7 existentes para a versão 9,8.
++
+http://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-updating-ontap-cloud.html["Saiba como atualizar quando o BlueXP  o notificar"^].
+
+* A atualização de um sistema de nó único leva o sistema off-line por até 25 minutos, durante os quais a e/S é interrompida.
+* A atualização de um par de HA não causa interrupções e e/S é ininterrupta. Durante esse processo de atualização sem interrupções, cada nó é atualizado em conjunto para continuar fornecendo e/S aos clientes.
+* Na AWS, os tipos de instância C4, M4 e R4 EC2 não são mais compatíveis com novas implantações do Cloud Volumes ONTAP. Se você tiver um sistema existente que esteja sendo executado em um tipo de instância C4, M4 ou R4, será necessário alterar para um tipo de instância na família de instâncias C5, M5 ou R5. Se você não puder alterar o tipo de instância, será necessário habilitar a rede aprimorada antes de atualizar.
++
+link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-updating-ontap-cloud.html#upgrades-in-aws-with-c4-m4-and-r4-ec2-instance-types["Saiba como atualizar na AWS com os tipos de instância C4, M4 e R4 EC2."] link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-change-ec2-instance.html["Saiba como alterar o tipo de instância EC2 para Cloud Volumes ONTAP"^].
+
++
+link:https://mysupport.netapp.com/info/communications/ECMLP2880231.html["Suporte à NetApp"^]Consulte para saber mais sobre o fim da disponibilidade e suporte para esses tipos de instância.
+
+
